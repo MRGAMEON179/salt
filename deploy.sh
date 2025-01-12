@@ -8,7 +8,7 @@ ENTRY_FILE="index.js"  # Default entry file (can be Python or Node.js script)
 NODE_VERSION="18"  # Node.js version for Node-based bots
 
 # Discord Role IDs (replace these with your actual role IDs from Discord)
-ADMIN_ROLE_ID="your_admin_role_id"  # Replace with your Discord admin role ID
+ADMIN_ROLE_ID="1327979782100488212"  # Replace with your Discord admin role ID
 MEMBER_ROLE_ID="your_member_role_id"  # Replace with your Discord member role ID
 FREE_ROLE_ID="your_free_role_id"  # Replace with your Discord free role ID
 
@@ -28,6 +28,7 @@ get_discord_role_id() {
 check_role_and_specs() {
     echo "Checking user role and resource limits..."
     
+    # Use case-insensitive comparison for role IDs
     if [[ "$ROLE_ID" == "$ADMIN_ROLE_ID" ]]; then
         echo "Role: Admin. No restrictions on deployment."
         STORAGE_LIMIT=$ADMIN_STORAGE_LIMIT
@@ -38,7 +39,7 @@ check_role_and_specs() {
         echo "Role: Free User. Bots are limited to $FREE_STORAGE_LIMIT GB of storage."
         STORAGE_LIMIT=$FREE_STORAGE_LIMIT
     else
-        echo "Error: Invalid role ID. Please specify a valid Discord role ID."
+        echo "Error: Invalid role ID ($ROLE_ID). Please specify a valid Discord role ID."
         exit 1
     fi
     
